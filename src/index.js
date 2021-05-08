@@ -3,6 +3,8 @@
  * When you're ready to start on your site, clear the file. Happy hacking!
  **/
 
+import { registerImage } from './lazy'
+
 //create (1) image
 
 /* 
@@ -30,7 +32,7 @@ const createImageNode = () => {
     return container
 }
 
-const newImage = createImageNode()
+//const newImage = createImageNode()
 
 const mountNode =  document.getElementById('images')
 
@@ -38,6 +40,7 @@ const addButton = document.querySelector('button')
 const addImage = () => {
     const newImage = createImageNode();
     mountNode.append(newImage)
+    registerImage(newImage)
 }
 
 addButton.addEventListener("click", addImage)
