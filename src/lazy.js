@@ -2,21 +2,25 @@ const isIntersecting = (entry) => {
     return entry.isIntersecting //true (in viewport)
 }
 
-const action = (entry) => {
+const loadImage = (entry) => {
 
     //find nodo
-    const nodo = entry.target
+    const container = entry.target
+    const image = container.firstChild
+    const url = image.dataset.src
+    //console.log(nodo.nodeName);
 
-    console.log("action");
+    //load image
+    image.src = url
 
     //delete wasted events (unlisten)
-    observer.unobserve(nodo)
+    observer.unobserve(container)
 }
 
 const observer = new IntersectionObserver((entries) => {
     entries
         .filter(isIntersecting)
-        .forEach(action)
+        .forEach(loadImage)
 })
 
 export const registerImage = (image) => {
