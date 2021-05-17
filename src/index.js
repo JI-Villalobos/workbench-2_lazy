@@ -22,7 +22,7 @@ const createImageNode = () => {
     container.className = "p-4"
 
     const image = document.createElement('img')
-    image.className = 'mx-auto'
+    image.className = 'mx-auto rounded-lg bg-gray-200 mt-4 focus:ring-indigo-100'
     image.width = '320'
     //image.src = `https://randomfox.ca/images/${random()}.jpg` //TODO  
     image.dataset.src = `https://randomfox.ca/images/${random()}.jpg`
