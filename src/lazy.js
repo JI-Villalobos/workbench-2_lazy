@@ -1,20 +1,19 @@
-const isIntersecting = (entry) => {
-    return entry.isIntersecting //true (in viewport)
+const isIntersecting = (intersectionEntry) => {
+    return intersectionEntry.isIntersecting //true (in viewport)
 }
 
-const loadImage = (entry) => {
+const loadImage = (intersectionEntry) => {
 
     //find nodo
-    const container = entry.target
-    const image = container.firstChild
-    const url = image.dataset.src
+    const imgNode = intersectionEntry.target
+    //const image = container.firstChild
+    const url = imgNode.dataset.src
     //console.log(nodo.nodeName);
 
     //load image
-    image.src = url
-
+    imgNode.src = url
     //delete wasted events (unlisten)
-    observer.unobserve(container)
+    observer.unobserve(imgNode)
 }
 
 const observer = new IntersectionObserver((entries) => {

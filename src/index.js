@@ -4,7 +4,7 @@
  **/
 
 import { registerImage } from './lazy'
-
+import { createImageNodes } from './utils'
 //create (1) image
 
 /* 
@@ -13,37 +13,25 @@ import { registerImage } from './lazy'
 </div>
 */
 
-const maximum = 122
-const minimum = 1
-const random = () => Math.floor(Math.random() * (maximum - minimum)) + minimum
+//load img when the page load
+const allImages =  document.querySelectorAll("img[data-src]")
+allImages.forEach(registerImage)
 
-const createImageNode = () => {
-    const container = document.createElement('div')
-    container.className = "p-4"
+//add new images
+const imageContainer = document.querySelector("#images")
 
-    const image = document.createElement('img')
-    image.className = 'mx-auto rounded-lg bg-gray-200 mt-4 focus:ring-indigo-100'
-    image.width = '320'
-    //image.src = `https://randomfox.ca/images/${random()}.jpg` //TODO  
-    image.dataset.src = `https://randomfox.ca/images/${random()}.jpg`
+const button = document.querySelector("button[type='submit']")
 
-    container.appendChild(image)
+button.addEventListener("click", () => {
+    const [node, image] = createImageNodes()
+    registerImage(image)
+    imageContainer.append(node)
+})
 
-
-    return container
-}
-
-//const newImage = createImageNode()
-
-const mountNode =  document.getElementById('images')
-
-const addButton = document.querySelector('button')
-const addImage = () => {
-    const newImage = createImageNode();
-    mountNode.append(newImage)
-    registerImage(newImage)
-}
-
-addButton.addEventListener("click", addImage)
+//clean
+const clean = document.querySelector("button[type='reset']")
+clean.addEventListener("click", () => {
+    imageContainer.innerHTML = ""
+})
 
 
