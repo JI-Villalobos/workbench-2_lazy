@@ -3,8 +3,10 @@
  * When you're ready to start on your site, clear the file. Happy hacking!
  **/
 
+import { format } from 'prettier'
 import { registerImage } from './lazy'
 import { createImageNodes } from './utils'
+import { clearValues } from './lazy'
 //create (1) image
 
 /* 
@@ -32,6 +34,8 @@ button.addEventListener("click", () => {
 const clean = document.querySelector("button[type='reset']")
 clean.addEventListener("click", () => {
     imageContainer.innerHTML = ""
+    console.clear()
+    clearValues()
 })
 
 

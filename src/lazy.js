@@ -41,3 +41,8 @@ function logState(){
     console.log(`🟣 Imágenes cargadas ${loadedImages}`);
     console.log("-------------------------------------");
 }
+
+export function clearValues(){
+    totalImages = 0
+    loadedImages = 0
+}
